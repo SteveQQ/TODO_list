@@ -19,23 +19,11 @@ public class ListItem {
         return mContent;
     }
 
-    public void setContent(String content) {
-        mContent = content;
-    }
-
     public Priority getPriority() {
         return mPriority;
     }
 
-    public void setPriority(Priority priority) {
-        mPriority = priority;
-    }
-
     public long getTimeStamp() {
         return mTimeStamp;
-    }
-
-    public void setTimeStamp(long timeStamp) {
-        mTimeStamp = timeStamp;
     }
 }

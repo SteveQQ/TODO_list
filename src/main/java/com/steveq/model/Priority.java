@@ -4,17 +4,17 @@ package com.steveq.model;
  * Created by SteveQ on 2016-10-04.
  */
 public enum Priority {
-    LOW(1),
-    MEDIUM(2),
-    HIGH(3);
+    LOW("LOW"),
+    MEDIUM("MEDIUM"),
+    HIGH("HIGH");
 
-    private int mValue;
+    private String mValue;
 
-    Priority(int value){
+    Priority(String value){
         mValue = value;
     }
 
-    public int getValue() {
+    public String getValue() {
         return mValue;
     }
 }
