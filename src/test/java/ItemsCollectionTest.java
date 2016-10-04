@@ -17,10 +17,10 @@ import java.util.TreeSet;
 public class ItemsCollectionTest {
 
     private ItemsCollection itemsCol = new ItemsCollection();
-    private Set<ListItem> testSet;
+    private TreeSet<ListItem> testSet;
 
     public Set<ListItem> prepareSet(){
-        testSet = new HashSet<ListItem>();
+        testSet = new TreeSet<ListItem>();
 
         testSet.add(new ListItem("abs", Priority.LOW, 1475591365));
         testSet.add(new ListItem("abz", Priority.HIGH, 1475591362));

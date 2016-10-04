@@ -10,30 +10,20 @@ import java.util.TreeSet;
  */
 public class ItemsCollection implements Serializable {
 
-    private Set<ListItem> mToDoList;
-    private Set<ListItem> mDoneList;
+    private TreeSet<ListItem> mToDoList;
+    private TreeSet<ListItem> mDoneList;
     static final long serialVersionUID = 1L;
 
     public ItemsCollection(){
-        mToDoList = new TreeSet<ListItem>(new Comparator<ListItem>() {
-            public int compare(ListItem li1, ListItem li2) {
-                return li1.getPriority().compareTo(li2.getPriority());
-            }
-        });
-        mDoneList = new TreeSet<ListItem>((li1, li2) -> li1.getPriority().compareTo(li2.getPriority()));
+        mToDoList = new TreeSet<ListItem>();
+        mDoneList = new TreeSet<ListItem>();
     }
 
-    class ItemsCompare implements Comparator<ListItem> {
-        public int compare(ListItem li1, ListItem li2){
-            return li1.getPriority().compareTo(li2.getPriority());
-        }
-    }
-
-    public Set<ListItem> getToDoList() {
+    public TreeSet<ListItem> getToDoList() {
         return mToDoList;
     }
 
-    public void setToDoList(Set<ListItem> toDoList) {
+    public void setToDoList(TreeSet<ListItem> toDoList) {
         mToDoList = toDoList;
     }
 
@@ -41,7 +31,7 @@ public class ItemsCollection implements Serializable {
         return mDoneList;
     }
 
-    public void setDoneList(Set<ListItem> doneList) {
+    public void setDoneList(TreeSet<ListItem> doneList) {
         mDoneList = doneList;
     }
 

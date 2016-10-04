@@ -3,6 +3,8 @@ package com.steveq.controller;
 import com.steveq.model.ItemsCollection;
 import com.steveq.model.ListItem;
 import com.steveq.model.Priority;
+
+import java.io.*;
 import java.util.Set;
 
 /**
@@ -45,5 +47,14 @@ public class ListController{
 
     public void removeItem(Set<ListItem> collection, ListItem li){
         collection.remove(li);
+    }
+
+    public void saveList() throws FileNotFoundException, IOException{
+
+        File file = new File(System.getProperty("user.dir") + "/test");
+        System.out.println(System.getProperty("user.dir"));
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+        oos.writeObject(mCollection);
+        oos.close();
     }
 }

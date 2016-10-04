@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Created by SteveQ on 2016-10-04.
@@ -42,4 +45,15 @@ public class ListControllerTest {
         Assert.assertTrue(lcontr.getCollection().getToDoList().size() == 0);
     }
 
+    @Test
+    public void savingFileTest() {
+        File file = new File(System.getProperty("user.dir")+"/test");
+        try {
+            lcontr.createNewItem("Hello world", Priority.LOW, 1475591365);
+            lcontr.saveList();
+            Assert.assertTrue(file.exists());
+        } catch(IOException ioe){
+            ioe.printStackTrace();
+        }
+    }
 }

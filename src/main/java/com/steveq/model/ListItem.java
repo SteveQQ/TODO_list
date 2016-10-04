@@ -1,9 +1,11 @@
 package com.steveq.model;
 
+import java.io.Serializable;
+
 /**
  * Created by SteveQ on 2016-10-04.
  */
-public class ListItem {
+public class ListItem implements Comparable,Serializable {
 
     private String mContent;
     private Priority mPriority;
@@ -25,5 +27,10 @@ public class ListItem {
 
     public long getTimeStamp() {
         return mTimeStamp;
+    }
+
+    public int compareTo(Object o){
+        ListItem li = (ListItem) o;
+        return (this.mPriority.compareTo(li.mPriority));
     }
 }
