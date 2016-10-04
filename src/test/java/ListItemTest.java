@@ -1,3 +1,5 @@
+import com.steveq.model.ListItem;
+import com.steveq.model.Priority;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -6,12 +8,15 @@ import org.junit.Test;
  */
 public class ListItemTest {
 
-    ListItem lItem = new ListItem("Hello World", 1475591365, Priority.LOW);
+    private ListItem lItem = new ListItem("Hello World", Priority.LOW, 1475591365);
 
     @Test
     public void testListItem(){
         Assert.assertNotNull(lItem);
-        Assert.assertTrue(lItem instanceof ListItem);
+        Assert.assertEquals("Hello World", lItem.getContent());
+        Assert.assertEquals(1, lItem.getPriority().getValue());
+        Assert.assertEquals(Priority.LOW, lItem.getPriority());
+        Assert.assertEquals(1475591365, lItem.getTimeStamp());
     }
 
 
