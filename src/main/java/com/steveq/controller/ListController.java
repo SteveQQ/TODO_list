@@ -14,9 +14,11 @@ public class ListController{
 
     private static ListController mInstance;
     private ItemsCollection mCollection;
+    private File file;
 
     private ListController(){
         mCollection = new ItemsCollection();
+        file = new File(System.getProperty("user.dir") + "/test");
     }
 
     public static ListController getInstance(){
@@ -49,12 +51,18 @@ public class ListController{
         collection.remove(li);
     }
 
-    public void saveList() throws FileNotFoundException, IOException{
+    public void saveList() throws IOException{
 
-        File file = new File(System.getProperty("user.dir") + "/test");
         System.out.println(System.getProperty("user.dir"));
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(mCollection);
         oos.close();
+    }
+
+    public void loadList() throws IOException, ClassNotFoundException{
+
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+        mCollection = (ItemsCollection)ois.readObject();
+        ois.close();
     }
 }
