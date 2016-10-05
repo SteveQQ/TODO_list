@@ -14,7 +14,7 @@ public class ListItemTest {
     public void testListItem(){
         Assert.assertNotNull(lItem);
         Assert.assertEquals("Hello World", lItem.getContent());
-        Assert.assertEquals(1, lItem.getPriority().getValue());
+        Assert.assertEquals("LOW", lItem.getPriority().getValue());
         Assert.assertEquals(Priority.LOW, lItem.getPriority());
         Assert.assertEquals(1475591365, lItem.getTimeStamp());
     }
