@@ -32,8 +32,8 @@ public class ListController{
         return mCollection;
     }
 
-    public void createNewItem(String content, Priority priority, long time){
-        mCollection.getToDoList().add(new ListItem(content, priority, time));
+    public void createNewItem(String title, String content, Priority priority, long time){
+        mCollection.getToDoList().add(new ListItem(title, content, priority, time));
     }
 
 

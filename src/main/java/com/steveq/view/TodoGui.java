@@ -5,6 +5,14 @@ package com.steveq.view;
  * and open the template in the editor.
  */
 
+import com.steveq.controller.ListController;
+import com.steveq.model.ListItem;
+import com.steveq.model.Priority;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Iterator;
+
 /**
  *
  * @author SteveQ
@@ -47,6 +55,7 @@ public class TodoGui extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        controller = ListController.getInstance();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,18 +83,91 @@ public class TodoGui extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("TODO");
+        jButton1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.createNewItem(jTextField2.getText(), jTextArea1.getText(), (Priority)jComboBox1.getSelectedItem(), System.currentTimeMillis());
+                //TODO : add refreshing of data in the list
+//                jList3.setModel(new javax.swing.AbstractListModel<ListItem>() {
+//                    ListItem[] elements = new ListItem[controller.getCollection().getToDoList().size()];
+//
+//                    public int getSize() { return controller.getCollection().getToDoList().size(); }
+//
+//                    public ListItem getElementAt(int i) {
+//                        for (int j = 0; j < controller.getCollection().getToDoList().size(); j++) {
+//                           elements[j] = controller.getCollection().getToDoList().get(j);
+//                        }
+//                        return elements[i];
+//                    }
+//                });
+                jTextField2.setText("");
+                jTextArea1.setText("");
+            }
+        });
 
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("TODO"));
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jList3.setModel(new javax.swing.AbstractListModel<ListItem>() {
+            ListItem[] elements = new ListItem[controller.getCollection().getToDoList().size()];
+
+            public int getSize() { return controller.getCollection().getToDoList().size(); }
+
+            public ListItem getElementAt(int i) {
+                for (int j = 0; j < controller.getCollection().getToDoList().size(); j++) {
+                    elements[j] = controller.getCollection().getToDoList().get(j);
+                }
+                return elements[i];
+            }
+
+            @Override
+            public void fireContentsChanged(Object source, int index0, int index1) {
+                super.fireContentsChanged(source, index0, index1);
+            }
         });
         jScrollPane4.setViewportView(jList3);
 
         jButton5.setText(">>>");
+        jButton5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.makeItemDone(jList3.getSelectedValue());
+                //jList4.updateUI();
+                jList3.updateUI();
+                jList4.setModel(new javax.swing.AbstractListModel<ListItem>() {
+                    ListItem[] elements = new ListItem[controller.getCollection().getDoneList().size()];
+
+                    public int getSize() { return controller.getCollection().getDoneList().size(); }
+
+                    public ListItem getElementAt(int i) {
+                        for (int j = 0; j < controller.getCollection().getDoneList().size(); j++) {
+                            elements[j] = controller.getCollection().getDoneList().get(j);
+                        }
+                        return elements[i];
+                    }
+                });
+            }
+        });
 
         jButton6.setText("<<<");
+        jButton6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.makeItemTodo(jList4.getSelectedValue());
+                //jList4.updateUI();
+                jList4.updateUI();
+                jList3.setModel(new javax.swing.AbstractListModel<ListItem>() {
+                    ListItem[] elements = new ListItem[controller.getCollection().getToDoList().size()];
+
+                    public int getSize() { return controller.getCollection().getToDoList().size(); }
+
+                    public ListItem getElementAt(int i) {
+                        for (int j = 0; j < controller.getCollection().getToDoList().size(); j++) {
+                            elements[j] = controller.getCollection().getToDoList().get(j);
+                        }
+                        return elements[i];
+                    }
+                });
+            }
+        });
 
         jButton7.setText("DELETE");
 
@@ -114,14 +196,21 @@ public class TodoGui extends javax.swing.JFrame {
         );
 
         jList4.setBorder(javax.swing.BorderFactory.createTitledBorder("DONE"));
-        jList4.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jList4.setModel(new javax.swing.AbstractListModel<ListItem>() {
+            ListItem[] elements = new ListItem[controller.getCollection().getDoneList().size()];
+
+            public int getSize() { return controller.getCollection().getDoneList().size(); }
+
+            public ListItem getElementAt(int i) {
+                for (int j = 0; j < controller.getCollection().getDoneList().size(); j++) {
+                    elements[j] = controller.getCollection().getDoneList().get(j);
+                }
+                return elements[i];
+            }
         });
         jScrollPane5.setViewportView(jList4);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(Priority.values()));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,11 +296,11 @@ public class TodoGui extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Priority> jComboBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
+    private javax.swing.JList<ListItem> jList3;
+    private javax.swing.JList<ListItem> jList4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -223,5 +312,6 @@ public class TodoGui extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField2;
+    private ListController controller;
     // End of variables declaration
 }

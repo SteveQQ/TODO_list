@@ -2,37 +2,35 @@ package com.steveq.model;
 
 import javax.swing.*;
 import java.io.Serializable;
-import java.util.Comparator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Created by SteveQ on 2016-10-04.
  */
 public class ItemsCollection implements Serializable {
 
-    private TreeSet<ListItem> mToDoList;
-    private TreeSet<ListItem> mDoneList;
+    private ArrayList<ListItem> mToDoList;
+    private ArrayList<ListItem> mDoneList;
     static final long serialVersionUID = 1L;
 
     public ItemsCollection(){
-        mToDoList = new TreeSet<>();
-        mDoneList = new TreeSet<>();
+        mToDoList = new ArrayList<>();
+        mDoneList = new ArrayList<>();
     }
 
-    public TreeSet<ListItem> getToDoList() {
+    public ArrayList<ListItem> getToDoList() {
         return mToDoList;
     }
 
-    public void setToDoList(TreeSet<ListItem> toDoList) {
+    public void setToDoList(ArrayList<ListItem> toDoList) {
         mToDoList = toDoList;
     }
 
-    public Set<ListItem> getDoneList() {
+    public ArrayList<ListItem> getDoneList() {
         return mDoneList;
     }
 
-    public void setDoneList(TreeSet<ListItem> doneList) {
+    public void setDoneList(ArrayList<ListItem> doneList) {
         mDoneList = doneList;
     }
 

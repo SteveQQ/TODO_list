@@ -7,14 +7,20 @@ import java.io.Serializable;
  */
 public class ListItem implements Comparable,Serializable {
 
+    private String mTitle;
     private String mContent;
     private Priority mPriority;
     private long mTimeStamp;
 
-    public ListItem(String content, Priority priority, long time){
+    public ListItem(String title, String content, Priority priority, long time){
+        mTitle = title;
         mContent = content;
         mPriority = priority;
         mTimeStamp = time;
+    }
+
+    public String getTitle() {
+        return mTitle;
     }
 
     public String getContent() {
@@ -32,5 +38,10 @@ public class ListItem implements Comparable,Serializable {
     public int compareTo(Object o){
         ListItem li = (ListItem) o;
         return (this.mPriority.compareTo(li.mPriority));
+    }
+
+    @Override
+    public String toString() {
+        return mTitle;
     }
 }
