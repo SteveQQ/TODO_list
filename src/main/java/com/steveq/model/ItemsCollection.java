@@ -1,5 +1,6 @@
 package com.steveq.model;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Set;
@@ -15,8 +16,8 @@ public class ItemsCollection implements Serializable {
     static final long serialVersionUID = 1L;
 
     public ItemsCollection(){
-        mToDoList = new TreeSet<ListItem>();
-        mDoneList = new TreeSet<ListItem>();
+        mToDoList = new TreeSet<>();
+        mDoneList = new TreeSet<>();
     }
 
     public TreeSet<ListItem> getToDoList() {
