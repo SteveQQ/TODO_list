@@ -59,10 +59,11 @@ public class TodoGui extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         controller = ListController.getInstance();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 450));
 
         jLabel3.setText("Title:");

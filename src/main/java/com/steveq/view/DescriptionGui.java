@@ -4,6 +4,8 @@ import com.steveq.controller.ListController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Created by SteveQ on 2016-10-09.
@@ -28,7 +30,7 @@ public class DescriptionGui extends JFrame {
         mainPane.add(scrollPane, BorderLayout.CENTER);
 
         getContentPane().add(mainPane);
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
         setSize(new Dimension(300, 300));
     }

@@ -2,6 +2,8 @@ import com.steveq.view.TodoGui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Created by SteveQ on 2016-10-07.
@@ -29,7 +31,17 @@ public class Main {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TodoGui().setVisible(true);
+                TodoGui tgui = new TodoGui();
+                tgui.setVisible(true);
+                tgui.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        int option = JOptionPane.showConfirmDialog(tgui, "Are you sure to exit?", "", JOptionPane.YES_NO_OPTION);
+                        if(option == JOptionPane.YES_OPTION){
+                            System.exit(1);
+                        }
+                    }
+                });
             }
         });
     }
