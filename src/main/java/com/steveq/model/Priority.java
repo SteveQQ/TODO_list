@@ -6,9 +6,10 @@ import java.io.Serializable;
  * Created by SteveQ on 2016-10-04.
  */
 public enum Priority implements Serializable{
-    LOW("LOW"),
+
+    HIGH("HIGH"),
     MEDIUM("MEDIUM"),
-    HIGH("HIGH");
+    LOW("LOW");
 
     private String mValue;
 

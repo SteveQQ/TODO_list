@@ -1,6 +1,8 @@
 package com.steveq.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by SteveQ on 2016-10-04.
@@ -42,6 +44,26 @@ public class ListItem implements Comparable,Serializable {
 
     @Override
     public String toString() {
-        return mTitle;
+        return mTitle + " | " + mPriority.getValue();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ListItem listItem = (ListItem) o;
+
+        return mTitle != null ? mTitle.equals(listItem.mTitle) : listItem.mTitle == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mTitle != null ? mTitle.hashCode() : 0;
+        result = 31 * result + (mContent != null ? mContent.hashCode() : 0);
+        result = 31 * result + (mPriority != null ? mPriority.hashCode() : 0);
+        result = 31 * result + (int) (mTimeStamp ^ (mTimeStamp >>> 32));
+        return result;
     }
 }

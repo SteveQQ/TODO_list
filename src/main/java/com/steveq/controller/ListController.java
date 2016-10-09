@@ -5,6 +5,7 @@ import com.steveq.model.ListItem;
 import com.steveq.model.Priority;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -34,21 +35,29 @@ public class ListController{
 
     public void createNewItem(String title, String content, Priority priority, long time){
         mCollection.getToDoList().add(new ListItem(title, content, priority, time));
+        mCollection.sortTodo();
+        mCollection.updateTodoModel();
     }
 
 
     public void makeItemDone(ListItem li){
         mCollection.getToDoList().remove(li);
         mCollection.getDoneList().add(li);
+        mCollection.updateDoneModel();
+        mCollection.updateTodoModel();
     }
 
     public void makeItemTodo(ListItem li){
         mCollection.getDoneList().remove(li);
         mCollection.getToDoList().add(li);
+        mCollection.updateDoneModel();
+        mCollection.updateTodoModel();
     }
 
-    public void removeItem(Set<ListItem> collection, ListItem li){
+    public void removeItem(ArrayList<ListItem> collection, ListItem li){
         collection.remove(li);
+        mCollection.updateDoneModel();
+        mCollection.updateTodoModel();
     }
 
     public void saveList() throws IOException{

@@ -9,6 +9,9 @@ import com.steveq.controller.ListController;
 import com.steveq.model.ListItem;
 import com.steveq.model.Priority;
 
+import javax.swing.*;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
@@ -58,9 +61,10 @@ public class TodoGui extends javax.swing.JFrame {
         controller = ListController.getInstance();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.setPreferredSize(new java.awt.Dimension(4450, 450));
+        jPanel1.setPreferredSize(new java.awt.Dimension(450, 450));
 
         jLabel3.setText("Title:");
 
@@ -83,100 +87,43 @@ public class TodoGui extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("TODO");
-        jButton1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.createNewItem(jTextField2.getText(), jTextArea1.getText(), (Priority)jComboBox1.getSelectedItem(), System.currentTimeMillis());
-                //TODO : add refreshing of data in the list
-//                jList3.setModel(new javax.swing.AbstractListModel<ListItem>() {
-//                    ListItem[] elements = new ListItem[controller.getCollection().getToDoList().size()];
-//
-//                    public int getSize() { return controller.getCollection().getToDoList().size(); }
-//
-//                    public ListItem getElementAt(int i) {
-//                        for (int j = 0; j < controller.getCollection().getToDoList().size(); j++) {
-//                           elements[j] = controller.getCollection().getToDoList().get(j);
-//                        }
-//                        return elements[i];
-//                    }
-//                });
-                jTextField2.setText("");
-                jTextArea1.setText("");
-            }
+        jButton1.addActionListener(e -> {
+            controller.createNewItem(jTextField2.getText(), jTextArea1.getText(), (Priority)jComboBox1.getSelectedItem(), System.currentTimeMillis());
+            jTextField2.setText("");
+            jTextArea1.setText("");
         });
 
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("TODO"));
-        jList3.setModel(new javax.swing.AbstractListModel<ListItem>() {
-            ListItem[] elements = new ListItem[controller.getCollection().getToDoList().size()];
+        jList3.setModel(controller.getCollection().getTodoModel());
 
-            public int getSize() { return controller.getCollection().getToDoList().size(); }
-
-            public ListItem getElementAt(int i) {
-                for (int j = 0; j < controller.getCollection().getToDoList().size(); j++) {
-                    elements[j] = controller.getCollection().getToDoList().get(j);
-                }
-                return elements[i];
-            }
-
-            @Override
-            public void fireContentsChanged(Object source, int index0, int index1) {
-                super.fireContentsChanged(source, index0, index1);
-            }
-        });
         jScrollPane4.setViewportView(jList3);
 
+        jList4.setBorder(javax.swing.BorderFactory.createTitledBorder("DONE"));
+        jList4.setModel(controller.getCollection().getDoneModel());
+
+        jScrollPane5.setViewportView(jList4);
+
         jButton5.setText(">>>");
-        jButton5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.makeItemDone(jList3.getSelectedValue());
-                //jList4.updateUI();
-                jList3.updateUI();
-                jList4.setModel(new javax.swing.AbstractListModel<ListItem>() {
-                    ListItem[] elements = new ListItem[controller.getCollection().getDoneList().size()];
-
-                    public int getSize() { return controller.getCollection().getDoneList().size(); }
-
-                    public ListItem getElementAt(int i) {
-                        for (int j = 0; j < controller.getCollection().getDoneList().size(); j++) {
-                            elements[j] = controller.getCollection().getDoneList().get(j);
-                        }
-                        return elements[i];
-                    }
-                });
-            }
-        });
+        jButton5.addActionListener(e -> controller.makeItemDone(jList3.getSelectedValue()));
 
         jButton6.setText("<<<");
-        jButton6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.makeItemTodo(jList4.getSelectedValue());
-                //jList4.updateUI();
-                jList4.updateUI();
-                jList3.setModel(new javax.swing.AbstractListModel<ListItem>() {
-                    ListItem[] elements = new ListItem[controller.getCollection().getToDoList().size()];
-
-                    public int getSize() { return controller.getCollection().getToDoList().size(); }
-
-                    public ListItem getElementAt(int i) {
-                        for (int j = 0; j < controller.getCollection().getToDoList().size(); j++) {
-                            elements[j] = controller.getCollection().getToDoList().get(j);
-                        }
-                        return elements[i];
-                    }
-                });
-            }
-        });
+        jButton6.addActionListener(e -> controller.makeItemTodo(jList4.getSelectedValue()));
 
         jButton7.setText("DELETE");
+        jButton7.addActionListener(e -> {
+            if(jList3.getSelectedValue() != null){
+                controller.removeItem(controller.getCollection().getToDoList(), jList3.getSelectedValue());
+            } else {
+                controller.removeItem(controller.getCollection().getDoneList(), jList4.getSelectedValue());
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -195,20 +142,6 @@ public class TodoGui extends javax.swing.JFrame {
                                 .addGap(0, 35, Short.MAX_VALUE))
         );
 
-        jList4.setBorder(javax.swing.BorderFactory.createTitledBorder("DONE"));
-        jList4.setModel(new javax.swing.AbstractListModel<ListItem>() {
-            ListItem[] elements = new ListItem[controller.getCollection().getDoneList().size()];
-
-            public int getSize() { return controller.getCollection().getDoneList().size(); }
-
-            public ListItem getElementAt(int i) {
-                for (int j = 0; j < controller.getCollection().getDoneList().size(); j++) {
-                    elements[j] = controller.getCollection().getDoneList().get(j);
-                }
-                return elements[i];
-            }
-        });
-        jScrollPane5.setViewportView(jList4);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(Priority.values()));
 
@@ -222,7 +155,7 @@ public class TodoGui extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel4)
