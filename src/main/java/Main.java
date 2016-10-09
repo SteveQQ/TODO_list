@@ -48,18 +48,6 @@ public class Main {
                         }
                     }
                 });
-//                tgui.jMenuItem1.addActionListener(new ActionListener() {
-//                    @Override
-//                    public void actionPerformed(ActionEvent e) {
-//                            JFileChooser fc = new JFileChooser();
-//                            int returnVal = fc.showSaveDialog(tgui);
-//                            if(returnVal == JFileChooser.APPROVE_OPTION){
-//                                File file = fc.getSelectedFile();
-//                                System.out.println(file);
-//                                controller.setFile(file);
-//                            }
-//                    }
-//                });
             }
         });
     }

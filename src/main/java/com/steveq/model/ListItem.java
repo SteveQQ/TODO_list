@@ -25,6 +25,10 @@ public class ListItem implements Comparable,Serializable {
         return mTitle;
     }
 
+    public void setContent(String content) {
+        mContent = content;
+    }
+
     public String getContent() {
         return mContent;
     }

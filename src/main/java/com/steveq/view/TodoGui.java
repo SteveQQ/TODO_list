@@ -65,6 +65,7 @@ public class TodoGui extends javax.swing.JFrame {
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
+
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(450, 450));
@@ -107,6 +108,12 @@ public class TodoGui extends javax.swing.JFrame {
                     dgui.setVisible(true);
                     ListItem selected = (ListItem)list.getSelectedValue();
                     dgui.description.setText(selected.getContent());
+                    dgui.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosing(WindowEvent e) {
+                            controller.getCollection().getToDoList().get(list.getSelectedIndex()).setContent(dgui.description.getText());
+                        }
+                    });
                 }
             }
         });
@@ -124,6 +131,12 @@ public class TodoGui extends javax.swing.JFrame {
                     dgui.setVisible(true);
                     ListItem selected = (ListItem)list.getSelectedValue();
                     dgui.description.setText(selected.getContent());
+                    dgui.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosing(WindowEvent e) {
+                            controller.getCollection().getDoneList().get(list.getSelectedIndex()).setContent(dgui.description.getText());
+                        }
+                    });
                 }
             }
         });
