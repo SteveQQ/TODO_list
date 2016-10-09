@@ -22,6 +22,14 @@ public class ListController{
         file = new File(System.getProperty("user.dir") + "/test");
     }
 
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
     public static ListController getInstance(){
         if(mInstance == null){
             mInstance = new ListController();
@@ -71,7 +79,12 @@ public class ListController{
     public void loadList() throws IOException, ClassNotFoundException{
 
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-        mCollection = (ItemsCollection)ois.readObject();
+        ItemsCollection loaded = (ItemsCollection)ois.readObject();
+        mCollection.setToDoList(loaded.getToDoList());
+        mCollection.setDoneList(loaded.getDoneList());
+        mCollection.updateDoneModel();
+        mCollection.updateTodoModel();
+        System.out.println("loaded");
         ois.close();
     }
 }

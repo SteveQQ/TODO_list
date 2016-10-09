@@ -1,14 +1,20 @@
+import com.steveq.controller.ListController;
 import com.steveq.view.TodoGui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
 /**
  * Created by SteveQ on 2016-10-07.
  */
 public class Main {
+
+    private ListController controller = ListController.getInstance();
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -42,6 +48,18 @@ public class Main {
                         }
                     }
                 });
+//                tgui.jMenuItem1.addActionListener(new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                            JFileChooser fc = new JFileChooser();
+//                            int returnVal = fc.showSaveDialog(tgui);
+//                            if(returnVal == JFileChooser.APPROVE_OPTION){
+//                                File file = fc.getSelectedFile();
+//                                System.out.println(file);
+//                                controller.setFile(file);
+//                            }
+//                    }
+//                });
             }
         });
     }

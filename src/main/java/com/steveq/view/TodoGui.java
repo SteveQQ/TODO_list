@@ -8,11 +8,14 @@ package com.steveq.view;
 import com.steveq.controller.ListController;
 import com.steveq.model.ListItem;
 import com.steveq.model.Priority;
+import javafx.stage.FileChooser;
 
 import javax.swing.*;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 
 /**
@@ -112,6 +115,18 @@ public class TodoGui extends javax.swing.JFrame {
 
         jList4.setBorder(javax.swing.BorderFactory.createTitledBorder("DONE"));
         jList4.setModel(controller.getCollection().getDoneModel());
+        jList4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JList list = (JList)e.getSource();
+                if(e.getClickCount() == 2){
+                    DescriptionGui dgui = new DescriptionGui("DESCRIPTION");
+                    dgui.setVisible(true);
+                    ListItem selected = (ListItem)list.getSelectedValue();
+                    dgui.description.setText(selected.getContent());
+                }
+            }
+        });
 
         jScrollPane5.setViewportView(jList4);
 
@@ -207,9 +222,36 @@ public class TodoGui extends javax.swing.JFrame {
         jMenu1.setText("File");
 
         jMenuItem1.setText("Save");
+        this.jMenuItem1.addActionListener(e -> {
+            JFileChooser fc = new JFileChooser();
+            int returnVal = fc.showSaveDialog(null);
+            if(returnVal == JFileChooser.APPROVE_OPTION){
+                File file = fc.getSelectedFile();
+                System.out.println(file);
+                controller.setFile(file);
+                try {
+                    controller.saveList();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Load");
+        this.jMenuItem2.addActionListener(e -> {
+            JFileChooser fc = new JFileChooser();
+            int returnVal = fc.showOpenDialog(null);
+            if(returnVal == JFileChooser.APPROVE_OPTION){
+                File file = fc.getSelectedFile();
+                controller.setFile(file);
+                try {
+                    controller.loadList();
+                } catch (IOException | ClassNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -233,8 +275,11 @@ public class TodoGui extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        controller.createNewItem(jTextField2.getText(), jTextArea1.getText(), (Priority)jComboBox1.getSelectedItem(), System.currentTimeMillis());
+        jTextField2.setText("");
+        jTextArea1.setText("");
     }
+
 
     // Variables declaration - do not modify
     private javax.swing.JButton jButton1;
@@ -248,7 +293,7 @@ public class TodoGui extends javax.swing.JFrame {
     private javax.swing.JList<ListItem> jList4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    public javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
