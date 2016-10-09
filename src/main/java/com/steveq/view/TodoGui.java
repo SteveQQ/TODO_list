@@ -12,8 +12,7 @@ import com.steveq.model.Priority;
 import javax.swing.*;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Iterator;
 
 /**
@@ -95,6 +94,18 @@ public class TodoGui extends javax.swing.JFrame {
 
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("TODO"));
         jList3.setModel(controller.getCollection().getTodoModel());
+        jList3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JList list = (JList)e.getSource();
+                if(e.getClickCount() == 2){
+                    DescriptionGui dgui = new DescriptionGui("DESCRIPTION");
+                    dgui.setVisible(true);
+                    ListItem selected = (ListItem)list.getSelectedValue();
+                    dgui.description.setText(selected.getContent());
+                }
+            }
+        });
 
         jScrollPane4.setViewportView(jList3);
 
