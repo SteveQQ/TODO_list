@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e95a52d-d3ea-4e90-9107-578275d8bb0c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/build/classes/main/com/steveq/view/TodoGui$4.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/steveq/view/TodoGui$2.class" afterPath="$PROJECT_DIR$/build/classes/main/com/steveq/view/TodoGui$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/steveq/view/TodoGui$3.class" afterPath="$PROJECT_DIR$/build/classes/main/com/steveq/view/TodoGui$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/classes/main/com/steveq/view/TodoGui.class" afterPath="$PROJECT_DIR$/build/classes/main/com/steveq/view/TodoGui.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/steveq/model/ListItem.java" afterPath="$PROJECT_DIR$/src/main/java/com/steveq/model/ListItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/steveq/view/DescriptionGui.java" afterPath="$PROJECT_DIR$/src/main/java/com/steveq/view/DescriptionGui.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/steveq/view/TodoGui.java" afterPath="$PROJECT_DIR$/src/main/java/com/steveq/view/TodoGui.java" />
     </list>
     <ignored path="ToDo.iws" />
@@ -44,31 +40,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TodoGui.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TodoGui.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/steveq/view/TodoGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+            <state relative-caret-position="260">
+              <caret line="113" column="93" selection-start-line="113" selection-start-column="93" selection-end-line="113" selection-end-column="93" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3709#4559#0" expanded="true" />
-                <element signature="e#4207#4515#0" expanded="true" />
-                <element signature="e#4514#4515#0" expanded="true" />
-                <element signature="e#4558#4559#0" expanded="true" />
-                <element signature="e#4790#5640#0" expanded="true" />
-                <element signature="e#5288#5596#0" expanded="true" />
-                <element signature="e#5595#5596#0" expanded="true" />
-                <element signature="e#5639#5640#0" expanded="true" />
+                <element signature="e#3731#4771#0" expanded="true" />
+                <element signature="e#4419#4727#0" expanded="true" />
+                <element signature="e#4726#4727#0" expanded="true" />
+                <element signature="e#4770#4771#0" expanded="true" />
+                <element signature="e#5002#5852#0" expanded="true" />
+                <element signature="e#5500#5808#0" expanded="true" />
+                <element signature="e#5807#5808#0" expanded="true" />
+                <element signature="e#5851#5852#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DescriptionGui.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DescriptionGui.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/steveq/view/DescriptionGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+            <state relative-caret-position="236">
+              <caret line="31" column="52" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -419,11 +415,11 @@
         <option value="$PROJECT_DIR$/src/test/java/ListItemTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/steveq/model/ItemsCollection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/steveq/model/Priority.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/steveq/view/DescriptionGui.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/steveq/controller/ListController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/steveq/model/ListItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/steveq/view/TodoGui.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/steveq/view/DescriptionGui.java" />
       </list>
     </option>
   </component>
@@ -1632,16 +1628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/steveq/view/DescriptionGui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/steveq/model/ListItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
@@ -1655,18 +1641,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/steveq/view/TodoGui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="66" column="35" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+        <state relative-caret-position="260">
+          <caret line="113" column="93" selection-start-line="113" selection-start-column="93" selection-end-line="113" selection-end-column="93" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3709#4559#0" expanded="true" />
-            <element signature="e#4207#4515#0" expanded="true" />
-            <element signature="e#4514#4515#0" expanded="true" />
-            <element signature="e#4558#4559#0" expanded="true" />
-            <element signature="e#4790#5640#0" expanded="true" />
-            <element signature="e#5288#5596#0" expanded="true" />
-            <element signature="e#5595#5596#0" expanded="true" />
-            <element signature="e#5639#5640#0" expanded="true" />
+            <element signature="e#3731#4771#0" expanded="true" />
+            <element signature="e#4419#4727#0" expanded="true" />
+            <element signature="e#4726#4727#0" expanded="true" />
+            <element signature="e#4770#4771#0" expanded="true" />
+            <element signature="e#5002#5852#0" expanded="true" />
+            <element signature="e#5500#5808#0" expanded="true" />
+            <element signature="e#5807#5808#0" expanded="true" />
+            <element signature="e#5851#5852#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/steveq/view/DescriptionGui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="31" column="52" selection-start-line="31" selection-start-column="52" selection-end-line="31" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

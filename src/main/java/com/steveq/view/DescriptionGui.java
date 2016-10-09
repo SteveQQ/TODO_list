@@ -22,12 +22,14 @@ public class DescriptionGui extends JFrame {
         mainPane = new JPanel();
         description = new JTextArea();
         scrollPane = new JScrollPane(description);
+        timeLabel = new JLabel();
         description.setLineWrap(true);
 
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         mainPane.setLayout(new BorderLayout());
         mainPane.add(scrollPane, BorderLayout.CENTER);
+        mainPane.add(timeLabel, BorderLayout.NORTH);
 
         getContentPane().add(mainPane);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -39,4 +41,5 @@ public class DescriptionGui extends JFrame {
     public JTextArea description;
     private JScrollPane scrollPane;
     private ListController controller;
+    public JLabel timeLabel;
 }

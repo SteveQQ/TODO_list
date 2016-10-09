@@ -16,6 +16,8 @@ import javax.swing.event.ListDataListener;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -104,10 +106,12 @@ public class TodoGui extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 JList list = (JList)e.getSource();
                 if(e.getClickCount() == 2){
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy | hh:mm");
                     DescriptionGui dgui = new DescriptionGui("DESCRIPTION");
                     dgui.setVisible(true);
                     ListItem selected = (ListItem)list.getSelectedValue();
                     dgui.description.setText(selected.getContent());
+                    dgui.timeLabel.setText(formatter.format(new Date(selected.getTimeStamp())));
                     dgui.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosing(WindowEvent e) {
