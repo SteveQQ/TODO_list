@@ -11,32 +11,32 @@ import java.util.*;
  */
 public class ItemsCollection implements Serializable {
 
-    private ArrayList<ListItem> mToDoList;
-    private ArrayList<ListItem> mDoneList;
+    private HashSet<ListItem> mToDoList;
+    private HashSet<ListItem> mDoneList;
     private DefaultListModel<ListItem> mTodoModel;
     private DefaultListModel<ListItem> mDoneModel;
     static final long serialVersionUID = 1L;
 
     public ItemsCollection(){
-        mToDoList = new ArrayList<>();
-        mDoneList = new ArrayList<>();
+        mToDoList = new HashSet<>();
+        mDoneList = new HashSet<>();
         mTodoModel = new DefaultListModel<>();
         mDoneModel = new DefaultListModel<>();
     }
 
-    public ArrayList<ListItem> getToDoList() {
+    public HashSet<ListItem> getToDoList() {
         return mToDoList;
     }
 
-    public void setToDoList(ArrayList<ListItem> toDoList) {
+    public void setToDoList(HashSet<ListItem> toDoList) {
         mToDoList = toDoList;
     }
 
-    public ArrayList<ListItem> getDoneList() {
+    public HashSet<ListItem> getDoneList() {
         return mDoneList;
     }
 
-    public void setDoneList(ArrayList<ListItem> doneList) {
+    public void setDoneList(HashSet<ListItem> doneList) {
         mDoneList = doneList;
     }
 
@@ -55,12 +55,15 @@ public class ItemsCollection implements Serializable {
     }
 
     public void sortTodo(){
-        Collections.sort(mToDoList, new Comparator<ListItem>() {
+        List<ListItem> tempList = new ArrayList<>(mToDoList);
+        Collections.sort(tempList, new Comparator<ListItem>() {
             @Override
             public int compare(ListItem o1, ListItem o2) {
                 return new Integer(o1.getPriority().ordinal()).compareTo(o2.getPriority().ordinal());
             }
         });
+        mToDoList.clear();;
+        mToDoList.addAll(tempList);
     }
 
     public DefaultListModel<ListItem> getTodoModel() {
@@ -69,5 +72,17 @@ public class ItemsCollection implements Serializable {
 
     public DefaultListModel<ListItem> getDoneModel() {
         return mDoneModel;
+    }
+
+    public ListItem getElement(TreeSet set, ListItem li){
+        Iterator it = set.iterator();
+        ListItem next = null;
+        while(it.hasNext()){
+            next = (ListItem)it.next();
+            if(next.equals(li)){
+                break;
+            }
+        }
+        return next;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by SteveQ on 2016-10-04.
  */
-public class ListItem implements Comparable,Serializable {
+public class ListItem implements Serializable {
 
     private String mTitle;
     private String mContent;
@@ -41,15 +41,11 @@ public class ListItem implements Comparable,Serializable {
         return mTimeStamp;
     }
 
-    public int compareTo(Object o){
-        ListItem li = (ListItem) o;
-        return (this.mPriority.compareTo(li.mPriority));
-    }
-
     @Override
     public String toString() {
         return mTitle + " | " + mPriority.getValue();
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -64,10 +60,6 @@ public class ListItem implements Comparable,Serializable {
 
     @Override
     public int hashCode() {
-        int result = mTitle != null ? mTitle.hashCode() : 0;
-        result = 31 * result + (mContent != null ? mContent.hashCode() : 0);
-        result = 31 * result + (mPriority != null ? mPriority.hashCode() : 0);
-        result = 31 * result + (int) (mTimeStamp ^ (mTimeStamp >>> 32));
-        return result;
+        return mTitle != null ? mTitle.hashCode() : 0;
     }
 }

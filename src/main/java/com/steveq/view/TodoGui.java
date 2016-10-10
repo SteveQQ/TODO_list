@@ -64,6 +64,8 @@ public class TodoGui extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         controller = ListController.getInstance();
 
+        jComboBox1.setToolTipText("PRIORITY");
+
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
@@ -94,9 +96,13 @@ public class TodoGui extends javax.swing.JFrame {
 
         jButton1.setText("TODO");
         jButton1.addActionListener(e -> {
-            controller.createNewItem(jTextField2.getText(), jTextArea1.getText(), (Priority)jComboBox1.getSelectedItem(), System.currentTimeMillis());
-            jTextField2.setText("");
-            jTextArea1.setText("");
+            if(!jTextField2.getText().equals("")) {
+                controller.createNewItem(jTextField2.getText(), jTextArea1.getText(), (Priority) jComboBox1.getSelectedItem(), System.currentTimeMillis());
+                jTextField2.setText("");
+                jTextArea1.setText("");
+            } else {
+                JOptionPane.showMessageDialog(this, "You need to insert title");
+            }
         });
 
         jList3.setBorder(javax.swing.BorderFactory.createTitledBorder("TODO"));
@@ -115,7 +121,10 @@ public class TodoGui extends javax.swing.JFrame {
                     dgui.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosing(WindowEvent e) {
-                            controller.getCollection().getToDoList().get(list.getSelectedIndex()).setContent(dgui.description.getText());
+                            int option = JOptionPane.showConfirmDialog(jPanel1.getParent(), "Do you want to save changes?", "", JOptionPane.YES_NO_OPTION);
+                            if(option == JOptionPane.YES_OPTION) {
+                                selected.setContent(dgui.description.getText());
+                            }
                         }
                     });
                 }
@@ -138,7 +147,10 @@ public class TodoGui extends javax.swing.JFrame {
                     dgui.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosing(WindowEvent e) {
-                            controller.getCollection().getDoneList().get(list.getSelectedIndex()).setContent(dgui.description.getText());
+                            int option = JOptionPane.showConfirmDialog(jPanel1.getParent(), "Do you want to save changes?", "", JOptionPane.YES_NO_OPTION);
+                            if(option == JOptionPane.YES_OPTION) {
+                                selected.setContent(dgui.description.getText());
+                            }
                         }
                     });
                 }
@@ -148,17 +160,25 @@ public class TodoGui extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jList4);
 
         jButton5.setText(">>>");
-        jButton5.addActionListener(e -> controller.makeItemDone(jList3.getSelectedValue()));
+        jButton5.addActionListener(e -> {
 
+            if (jList3.getSelectedValuesList() != null) {
+                controller.makeItemDone(jList3.getSelectedValuesList());
+            }
+        });
         jButton6.setText("<<<");
-        jButton6.addActionListener(e -> controller.makeItemTodo(jList4.getSelectedValue()));
+        jButton6.addActionListener(e -> {
+            if(jList4.getSelectedValuesList() != null) {
+                controller.makeItemTodo(jList4.getSelectedValuesList());
+            }
+        });
 
         jButton7.setText("DELETE");
         jButton7.addActionListener(e -> {
-            if(jList3.getSelectedValue() != null){
-                controller.removeItem(controller.getCollection().getToDoList(), jList3.getSelectedValue());
-            } else {
-                controller.removeItem(controller.getCollection().getDoneList(), jList4.getSelectedValue());
+            if(jList3.getSelectedValuesList() != null){
+                controller.removeItem(controller.getCollection().getToDoList(), jList3.getSelectedValuesList());
+            } else if(jList4.getSelectedValuesList() != null) {
+                controller.removeItem(controller.getCollection().getDoneList(), jList4.getSelectedValuesList());
             }
         });
 
